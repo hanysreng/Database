@@ -1,0 +1,64 @@
+
+
+
+#select * from student;
+
+# alter it mean motifies table or change feles 
+
+#alter table student add column stu_email varchar(100);
+
+#alter table student add column stu_class varchar(100) after stu_name;
+
+#select * from student;
+
+#alter table student add column stu_id int first;
+
+#alter table student change stu_email stu_province varchar(100);
+
+#alter table student drop stu_id;
+#select * from student;
+
+#alter table student drop stu_province;
+#alter table student drop stu_class;
+
+#insert into student(stu_name,stu_age)
+#values ('chopey',22);
+
+#insert into student(stu_name,stu_age)
+#values ('sokon',21);
+
+#insert into student(stu_name,stu_age)
+#values ('hany',22);
+
+#select ot id
+
+#select stu_name,stu_age from student;
+
+# count row 
+
+#select count(stu_name) from student;
+#sum age
+
+#select sum(stu_age) from student;
+#select * from student where stu_name = 'hany';
+#select stu_name from student where stu_name = 'hany';
+
+#run order by desc
+#select * from student order by id desc;
+
+#insert into student(stu_name,stu_age)
+#values ('hany',23);
+
+#select * from student;
+
+#who have age 23 and have name hany
+
+#select * from student where stu_name = 'hany' and stu_age='23';
+
+#insert into student(stu_name,stu_age)
+#values ('bopha',24);
+
+#select * from student where stu_age between 20 and 21;
+#select * from student where stu_age in (20,21);
+
+

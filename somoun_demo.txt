@@ -1,0 +1,6 @@
+
+
+
+on: use with inner join.
+where: general condition
+and : use to add another condition

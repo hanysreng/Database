@@ -1,0 +1,31 @@
+
++++Laravel
+
++relationship
+->create table(put relationship)
+->create model 
+-> put information in model User.php(
+
+   public function profile(){
+        return $this->hasOne(Profile::class);
+    }
+
+)
+-> put information in model that you create (
+   
+  public function user(){
+        return $this->belognsTo(User::class);
+    }
+
+)
+
+
+
+
++insert information to users in laravel
+->(Ex) INSERT INTO users(name,email,password) values('hany','hany@gamil.com','123455678');
+
++create profiles give users but to know id users
+
+->(Ex) INSERT INTO profiles(user_id,phone,address) values('2','0938764328','BB');
+

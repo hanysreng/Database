@@ -1,0 +1,90 @@
+
+//inner join student and teacher that have teacher inchargeid  (inner join two table)
+
+use test;
+select tblstudent.studentid as "Student ID",
+concat(tblstudent.firstname,' ',tblstudent.lastname) as "Student Name",
+tblstudent.sex as "Gander",
+tblstudent.subject as "Refistered Course",
+concat(tblteacher.firstname,' ',tblteacher.lastname) as "Instructor",
+tblstudent.email as "Contact"
+from tblstudent
+inner join tblteacher on
+tblteacher.teacherid = tblstudent.teacherinchargeid;
+
+// not use inner join (use where)
+use test;
+select tblstudent.studentid as "Student ID",
+concat(tblstudent.firstname,' ',tblstudent.lastname) as "Student Name",
+tblstudent.sex as "Gander",
+tblstudent.subject as "Refistered Course",
+concat(tblteacher.firstname,' ',tblteacher.lastname) as "Instructor",
+tblstudent.email as "Contact"
+from tblstudent,tblteacher
+where tblteacher.teacherid = tblstudent.teacherinchargeid
+and tblstudent.province = "Phnom penh";
+
+// in clude three table
+
+use sakila;
+select film_category.film_id,category.name,film.description from film 
+inner join film_category on film.film_id = film_category.category_id
+inner join category on film_category.category_id = category.category_id where category.name = "Animation";
+
+select count(*) from film 
+inner join film_category on film.film_id = film_category.category_id
+inner join category on film_category.category_id = category.category_id where category.name = "Animation";
+//
+
+   use test;
+   select province from tblstudent
+   where province not in(
+   select pro_en_name from tblprovinces
+   );
+
+//
+  select * from test.tblstudent where province not like 'p%';
+
+//province not have student
+
+use test;
+  select pro_id,pro_en_name,pro_kh_name from tblprovinces where pro_en_name not in(
+    select province from tblstudent
+  );
+//
+use test;
+  select firstname,lastname,subject,province from tblstudent where teacherinchargeid in(
+    select teacherid from tblteacher where lastname ='Vongkor'
+  );
+//
+  use test;
+  select studentid,firstname,lastname,province from tblstudent 
+  inner join tblprovinces on province = pro_en_name;
+//
+use test;
+select s.studentid,s.firstname,s.lastname,tea.lastname 
+from tblstudent s , tblteacher tea 
+where s.teacherinchargeid = tea.teacherid;
+//inner join 
+use test;
+select stu.firstname,stu.lastname,tea.firstname,tea.lastname,stu.province 
+from tblstudent stu inner join tblteacher tea on tea.province = stu.province;
+//
+use test;
+select * from tblstudent where parentinchargeid in(
+ select parentid from tblparent where job = 'police'
+);
+//gpa tich cheang kea
+ use test;
+  select concat(firstname,lastname) as "Full name",sex as 'Gender',province as 'come from',phone as 'contact',
+  gpa as 'Great Point verage' from tblstudent where gpa = (select min(gpa) from tblstudent);
+//
+
+
+
+
+
+
+
+
+

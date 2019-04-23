@@ -1,0 +1,74 @@
+
+
+->Name in drupal:
+ + name:Hany SRENG
+ + password: hanysreng123@#$
+->name in MCS
+ + name:hany
+ + password:hany22sreng     (wp-admin/themes.php)
+->name in skype
+ + email:hany.sreng@gmail.com
+ + password:HanySreng123@#$
+
++ + T_rady project laravel NewLaravel.
+
+
++++ selects
+1- create table
+ -> php artisan make:migration create_teachers_table;
+2- create controller
+-> php artisan make:controller TeacherController
+3- create Model
+-> php artisan make:model TeacherModel
+4- write fele in table
+->then ruun (php artisan migrate)
+5- in TeacherController
+-> add(use App\TeacherModel)
+-> public function index()
+    {
+        $teachers = TeacherModel::all();
+        return view('teachers.index',compact('teachers',$teachers));
+    }
+
+6- when select fele
+->php artisan tinker
+->$s = new App\TeacherModel
+->$s->name = "name";
+->$s->feedback="good student";
+->$s->save();
+++ when you want to see route
+->cd selects
+->php artisan route:list
+
+
++  github
+->name : hany.sreng@gmail.com
+->password: hany22sreng
++twitter
+->Hany
+->hany22sreng
+
+++ Kratie
+-> http://kratie.pnc.lan/phpmyadmin
+->name:hany.sreng
+->password:123
+
+++ FillZilla
+->Host:kratie
+->Usename:hany.sreng
+->password:12345678
+
+++ in laravel 
+-> delete need(@csrf, method('DELETE') in form)
+->update need(@csrf, and method('PUT') in fom)
+
+
++  new windown
+(
+ctrl+windown+d
+ctrl+windown+(<-)
+ctrl+windown+f
+)
+
+
++++ key PIA(username:hany sreng , Email:hany.sreng@gmail.com)

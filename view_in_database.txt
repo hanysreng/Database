@@ -1,0 +1,42 @@
+
+
++ create view
+
+use test;
+create view studentGPA as
+select concat(tblstudent.firstname,'',tblstudent.lastname) as 'student Name',
+tblstudent.GPA,tblstudent.subject from tblstudent;
++ select view
+ select * from studentGPA;
+
++
+create view studentParent as 
+
+ select tblstudent.studentid, concat(tblstudent.firstname,'',tblstudent.lastname) as 'Studentname',
+ 
+ subject,GPA , concat(tblparent.firstname,'',tblparent.lastname) as 'Parent'
+ from tblstudent inner join tblparent on tblstudent.parentinchargeid = tblparent.parentid;
++
+select * from studentParent;
++
+
+create view studentParent1 as 
+
+ select tblstudent.studentid, concat(tblstudent.firstname,'',tblstudent.lastname) as 'Studentname',
+ 
+ subject,GPA , concat(tblparent.firstname,'',tblparent.lastname) as 'Parent'
+ from tblstudent inner join tblparent on tblstudent.parentinchargeid = tblparent.parentid and tblparent.job = 'Teacher';
+
++
+select * from studentParent1;
+
++
+create view studentParent2 as 
+
+ select tblstudent.studentid, concat(tblstudent.firstname,'',tblstudent.lastname) as 'Studentname',
+ 
+ subject,GPA , concat(tblparent.firstname,'',tblparent.lastname) as 'Parent'
+ from tblstudent inner join tblparent on tblstudent.parentinchargeid = tblparent.parentid and tblparent.job = 'Teacher' and tblstudent.GPA<=2;
+
++
+select * from studentParent2;

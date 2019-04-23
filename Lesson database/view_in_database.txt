@@ -1,0 +1,107 @@
+++ view inner join 2 column
+use pnc;
+
+create view storeProduct as
+select pid as 'productID', pname as 'Product Name', quantity as 'Quantiry', unitprice as 'Unit Price', catname as 'Category Name'
+from product
+inner join category on product.catid=category.catid;
+
+++
+select * from storeProduct;
+
+++ view inner join 3 column
+
+use pnc;
+create view storeProduct1 as
+select pid as 'productID', pname as 'Product Name', quantity as 'Quantiry', unitprice as 'Unit Price', catname as 'Category Name', storename as 'Store Name'
+from product
+inner join category on product.catid=category.catid
+inner join store on product.storeid=store.storeid;
+++
+select * from storeProduct1;
+
+++ view that have sum
+
+use pnc;
+create view storeProducts as
+select pid as 'productID', pname as 'Product Name',sum(product.quantity*product.unitprice ) as 'Sub Total' ,quantity as 'Quantiry', unitprice as 'Unit Price', catname as 'Category Name', storename as 'Store Name'
+from product
+inner join category on product.catid=category.catid
+inner join store on product.storeid=store.storeid
+where store.storename = 'Store A' group by product.pid;
+
+select * from storeProducts;
+
+++ create view that want to Store A
+
+use pnc;
+create view storeProduct5 as
+select pid as 'productID', pname as 'Product Name', quantity as 'Quantiry', unitprice as 'Unit Price', catname as 'Category Name', storename as 'Store Name'
+from product
+inner join category on product.catid=category.catid
+inner join store on product.storeid=store.storeid
+where store.storename = 'Store A';
+
+select * from storeProduct5;
+
+
+
++ create view
+
+use test;
+create view studentGPA as
+select concat(tblstudent.firstname,'',tblstudent.lastname) as 'student Name',
+tblstudent.GPA,tblstudent.subject from tblstudent;
++ select view
+ select * from studentGPA;
+
++
+create view studentParent as 
+
+ select tblstudent.studentid, concat(tblstudent.firstname,'',tblstudent.lastname) as 'Studentname',
+ 
+ subject,GPA , concat(tblparent.firstname,'',tblparent.lastname) as 'Parent'
+ from tblstudent inner join tblparent on tblstudent.parentinchargeid = tblparent.parentid;
++
+select * from studentParent;
++
+
+create view studentParent1 as 
+
+ select tblstudent.studentid, concat(tblstudent.firstname,'',tblstudent.lastname) as 'Studentname',
+ 
+ subject,GPA , concat(tblparent.firstname,'',tblparent.lastname) as 'Parent'
+ from tblstudent inner join tblparent on tblstudent.parentinchargeid = tblparent.parentid and tblparent.job = 'Teacher';
+
++
+select * from studentParent1;
+
++
+create view studentParent2 as 
+
+ select tblstudent.studentid, concat(tblstudent.firstname,'',tblstudent.lastname) as 'Studentname',
+ 
+ subject,GPA , concat(tblparent.firstname,'',tblparent.lastname) as 'Parent'
+ from tblstudent inner join tblparent on tblstudent.parentinchargeid = tblparent.parentid and tblparent.job = 'Teacher' and tblstudent.GPA<=2;
+
++
+select * from studentParent2;
+
+++ create view 
+use test;
+ create view studentList as 
+ select studentid as "ID", concat(firstname,'',lastname) as "Name", email as "Email" , university as "University" , GPA  from tblstudent;
+++ use 
+ select * from studentList;
+
+++create procedure
+
+delimiter //
+create procedure filter_student(in  filter varchar(50))
+begin
+
+select * from studentList
+where Name like (concat('%', filter,'%'));
+end //
++ when call it
+call filter_student('');

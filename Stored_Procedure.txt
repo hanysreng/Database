@@ -1,0 +1,63 @@
+
+
+++++ procedure first
+
+use test;
+DELIMITER //
+create procedure getAllStudent()
+  BEGIN
+  select * from tblstudent;
+  ENd //
+
+++ when call procedure
+
+ CALL getAllStudent();
+
+++ put parameters
+
+DELIMITER //
+create procedure getStudentByUniversity(IN university varchar(40))
+begin 
+  select *from tblstudent where tblstudent.university = university;
+end //
+++ when call 
+
+call getStudentByUniversity('PNC');
+
++++ search name for student Example S or P
+
+use test;
+DELIMITER //
+
+create procedure searchLastname(IN search varchar(50))
+begin
+   select * from tblstudent where tblstudent.lastname like(concat("%",search,"%"));
+end //
+++ when call it
+
+call searchLastname("S");
++++ procedure find age
+use test;
+DELIMITER //
+
+create procedure findYourAge(IN bornYear int)
+begin
+  select year(curdate()) -bornYear as YourAge;
+end //
+++ call it
+call findYourAge(1989);
+
+++ befor update provinces
+delimiter //
+create trigger before_province_update before update on tblprovinces
+for each row 
+begin 
+    insert into tblprovince_update (provinceid,action,update_at)
+    value(OLD.pro_id,'update', curdate());
+end //
+++ call update it
+
+update tblprovinces
+set status = 10
+where pro_id = 2;
+select * from test.tblprovince_update;
